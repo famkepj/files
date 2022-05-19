@@ -1,20 +1,9 @@
 __winc_id__ = "ae539110d03e49ea8738fd413ac44ba8"
 __human_name__ = "files"
 
-
 import os
 import shutil
 from zipfile import ZipFile
-
-import os
-import shutil
-from zipfile import ZipFile
-
-def main():
-    clean_cache() 
-    cache_zip('files/data.zip', 'files/cache' )
-    (cached_files()) 
-    print(find_password(cached_files()))
 
 def clean_cache ():
     if not os.path.exists('files/cache'):
@@ -30,7 +19,7 @@ def cache_zip(zip_file_path, cache_dir_path):
     return zipObj
 
 def cached_files():
-    path= r'C:\Users\famke\OneDrive\Documenten\Programmeren\Winc-Academy (back-end)\files\cache'
+    path= os.path.abspath('files\cache')
     list_cached_files = [os.path.join(path, file) for file in os.listdir(path)]
     return list_cached_files
 
@@ -45,4 +34,7 @@ def find_password(list_cached_files):
     return password
 
 if __name__ == '__main__':
-    main()
+    clean_cache() 
+    cache_zip('files/data.zip', 'files/cache' )
+    print(cached_files()) 
+    print(find_password(cached_files()))
